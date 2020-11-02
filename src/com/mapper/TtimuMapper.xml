@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.TtimuMapper">
+	<select id="findTtimuList" 
+		resultType="Ttimu">
+		select * from ttimu 
+	</select>
+	
+	<select id="query" parameterType="java.util.Map" resultType="Ttimu">
+		select * from ttimu  
+		<where>
+			<if test="id!=null and id!=0">
+			   and id= #{id}
+			</if>
+			<if test="zid!=null and zid!=0">
+			   and zid= #{zid}
+			</if>
+		</where>
+	</select>
+	
+	
+	<select id="queryTtimuById" parameterType="int" resultType="Ttimu">
+		select * from ttimu where id=${value}
+	</select>
+ 
+
+
+	<insert id="insertTtimu" useGeneratedKeys="true" keyProperty="id" parameterType="Ttimu">
+		insert into ttimu
+		(name,xuanxianga,xuanxiangb,xuanxiangc,xuanxiangd,daan,fenshu,del,zid)
+		values
+		(#{name},#{xuanxianga},#{xuanxiangb},#{xuanxiangc},#{xuanxiangd},#{daan},#{fenshu},#{del},#{zid});
+	</insert>
+ 
+	
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+	<update id="updateTtimu" parameterType="Ttimu" >
+		update ttimu set
+		name=#{name},xuanxianga=#{xuanxianga},xuanxiangb=#{xuanxiangb},xuanxiangc=#{xuanxiangc},xuanxiangd=#{xuanxiangd},daan=#{daan},fenshu=#{fenshu},del=#{del},zid=#{zid}
+		where
+		id=#{id}	
+	</update>
+	
+ 
+	
+	<delete id="deleteTtimu" parameterType="int">
+	    delete from  ttimu where id=${value}
+	</delete>
+
+</mapper>
+
+ 

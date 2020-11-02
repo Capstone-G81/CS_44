@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.TadminMapper">
+	<select id="findTadminList" 
+		resultType="Tadmin">
+		select * from tadmin 
+	</select>
+	
+	<select id="query" parameterType="java.util.Map" resultType="Tadmin">
+		select * from tadmin  
+		<where>
+			<if test="userId!=null and userId!=0">
+			   and userId= #{userid}
+			</if>
+				<if test="username!=null and username!=''">
+			   and username= #{username}
+			</if>
+			<if test="userpw!=null and userpw!=''">
+			   and userpw= #{userpw}
+			</if>
+			
+		</where>
+	</select>
+	
+	
+	<select id="queryTadminById" parameterType="int" resultType="Tadmin">
+		select * from tadmin where id=${value}
+	</select>
+ 
+
+
+	<insert id="insertTadmin" useGeneratedKeys="true" keyProperty="id" parameterType="Tadmin">
+		insert into tadmin
+		(userId,userName,userPw)
+		values
+		(#{userid},#{username},#{userpw});
+	</insert>
+ 
+	
+  
+ 
+ 
+
+
+
+	<update id="updateTadmin" parameterType="Tadmin" >
+		update tadmin set
+		userName=#{username},userPw=#{userpw}
+		where
+		userid=#{userid}	
+	</update>
+	
+ 
+	
+	<delete id="deleteTadmin" parameterType="int">
+	    delete from  tadmin where userId=${value}
+	</delete>
+
+</mapper>
+
+ 

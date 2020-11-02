@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.TstuMapper">
+	<select id="findTstuList" 
+		resultType="Tstu">
+		select * from tstu 
+	</select>
+	
+	<select id="query" parameterType="java.util.Map" resultType="Tstu">
+		select * from tstu  
+		<where>
+			<if test="stuid!=null and stuid!=0">
+			   and stuid= #{stuid}
+			</if>
+			<if test="stuXuehao!=null and stuXuehao!=''">
+			   and stuXuehao= #{stuXuehao}
+			</if>
+			<if test="loginPw!=null and loginPw!=''">
+			   and loginPw= #{loginPw}
+			</if>
+		</where>
+	</select>
+	
+	
+	<select id="queryTstuById" parameterType="int" resultType="Tstu">
+		select * from tstu where stuid=${value}
+	</select>
+ 
+
+
+	<insert id="insertTstu" useGeneratedKeys="true" keyProperty="id" parameterType="Tstu">
+		insert into tstu
+		(stuxuehao,sturealname,stusex,stuage,loginpw,zhuangtai,del)
+		values
+		(#{stuXuehao},#{stuRealname},#{stuSex},#{stuAge},#{loginPw},#{zhuangtai},#{del});
+	</insert>
+ 
+	
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+	<update id="updateTstu" parameterType="Tstu" >
+		update tstu set
+		stuxuehao=#{stuXuehao},sturealname=#{stuRealname},stusex=#{stuSex},stuage=#{stuAge},loginpw=#{loginPw},zhuangtai=#{zhuangtai},del=#{del}
+		where
+		stuid=#{stuId}	
+	</update>
+	
+ 
+	
+	<delete id="deleteTstu" parameterType="int">
+	    delete from  tstu where stuid=${value}
+	</delete>
+
+</mapper>
+
+ 

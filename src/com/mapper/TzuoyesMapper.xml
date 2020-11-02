@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.TzuoyesMapper">
+	<select id="findTzuoyesList" 
+		resultType="Tzuoyes">
+		select * from tzuoyes 
+	</select>
+	
+	<select id="query" parameterType="java.util.Map" resultType="Tzuoyes">
+		select * from tzuoyes  
+		<where>
+			<if test="id!=null and id!=0">
+			   and id= #{id}
+			</if>
+			<if test="stuid!=null and stuid!=0">
+			   and stuid= #{stuid}
+			</if>
+			<if test="zuoyetid!=null and zuoyetid!=0">
+			   and zuoyetid= #{zuoyetid}
+			</if>
+			
+		</where>
+	</select>
+	
+	
+	<select id="queryTzuoyesById" parameterType="int" resultType="Tzuoyes">
+		select * from tzuoyes where id=${value}
+	</select>
+ 
+
+
+	<insert id="insertTzuoyes" useGeneratedKeys="true" keyProperty="id" parameterType="Tzuoyes">
+		insert into tzuoyes
+		(mingcheng,fujian,tijiaoshi,stuId,zuoyetId,huifu,kgt,zgt)
+		values
+		(#{mingcheng},#{fujian},#{tijiaoshi},#{stuid},#{zuoyetid},#{huifu},#{kgt},#{zgt});
+	</insert>
+ 
+	
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+	<update id="updateTzuoyes" parameterType="Tzuoyes" >
+		update tzuoyes set
+		mingcheng=#{mingcheng},fujian=#{fujian},tijiaoshi=#{tijiaoshi},stuId=#{stuid},zuoyetId=#{zuoyetid},huifu=#{huifu},kgt=#{kgt},zgt=#{zgt}
+		where
+		id=#{id}	
+	</update>
+	
+ 
+	
+	<delete id="deleteTzuoyes" parameterType="int">
+	    delete from  tzuoyes where id=${value}
+	</delete>
+
+</mapper>
+
+ 

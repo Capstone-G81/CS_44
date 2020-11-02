@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.TxuexiMapper">
+	<select id="findTxuexiList" 
+		resultType="Txuexi">
+		select * from txuexi 
+	</select>
+	
+	<select id="query" parameterType="java.util.Map" resultType="Txuexi">
+		select * from txuexi  
+		<where>
+			<if test="id!=null and id!=0">
+			   and id= #{id}
+			</if>
+		</where>
+	</select>
+	
+	
+	<select id="queryTxuexiById" parameterType="int" resultType="Txuexi">
+		select * from txuexi where id=${value}
+	</select>
+ 
+
+
+	<insert id="insertTxuexi" useGeneratedKeys="true" keyProperty="id" parameterType="Txuexi">
+		insert into txuexi
+		(mingcheng,fujian,fujianYuanshiming,shijian,del)
+		values
+		(#{mingcheng},#{fujian},#{fujianyuanshiming},#{shijian},#{del});
+	</insert>
+ 
+	
+  
+ 
+ 
+ 
+ 
+ 
+
+
+
+	<update id="updateTxuexi" parameterType="Txuexi" >
+		update txuexi set
+		mingcheng=#{mingcheng},fujian=#{fujian},fujianYuanshiming=#{fujianyuanshiming},shijian=#{shijian},del=#{del}
+		where
+		id=#{id}	
+	</update>
+	
+ 
+	
+	<delete id="deleteTxuexi" parameterType="int">
+	    delete from  txuexi where id=${value}
+	</delete>
+
+</mapper>
+
+ 

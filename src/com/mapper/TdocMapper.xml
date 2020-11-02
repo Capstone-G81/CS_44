@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.TdocMapper">
+	<select id="findTdocList" 
+		resultType="Tdoc">
+		select * from tdoc 
+	</select>
+	
+	<select id="query" parameterType="java.util.Map" resultType="Tdoc">
+		select * from tdoc  
+		<where>
+			<if test="id!=null and id!=0">
+			   and id= #{id}
+			</if>
+		</where>
+	</select>
+	
+	
+	<select id="queryTdocById" parameterType="int" resultType="Tdoc">
+		select * from tdoc where id=${value}
+	</select>
+ 
+
+
+	<insert id="insertTdoc" useGeneratedKeys="true" keyProperty="id" parameterType="Tdoc">
+		insert into tdoc
+		(mingcheng,fujian,fujianYuanshiming,shijian,del)
+		values
+		(#{mingcheng},#{fujian},#{fujianyuanshiming},#{shijian},#{del});
+	</insert>
+ 
+	
+  
+ 
+ 
+ 
+ 
+ 
+
+
+
+	<update id="updateTdoc" parameterType="Tdoc" >
+		update tdoc set
+		mingcheng=#{mingcheng},fujian=#{fujian},fujianYuanshiming=#{fujianyuanshiming},shijian=#{shijian},del=#{del}
+		where
+		id=#{id}	
+	</update>
+	
+ 
+	
+	<delete id="deleteTdoc" parameterType="int">
+	    delete from  tdoc where id=${value}
+	</delete>
+
+</mapper>
+
+ 

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.TliuyanMapper">
+	<select id="findTliuyanList" 
+		resultType="Tliuyan">
+		select * from tliuyan 
+	</select>
+	
+	<select id="query" parameterType="java.util.Map" resultType="Tliuyan">
+		select * from tliuyan  
+		<where>
+			<if test="id!=null and id!=0">
+			   and id= #{id}
+			</if>
+		</where>
+	</select>
+	
+	
+	<select id="queryTliuyanById" parameterType="int" resultType="Tliuyan">
+		select * from tliuyan where id=${value}
+	</select>
+ 
+
+
+	<insert id="insertTliuyan" useGeneratedKeys="true" keyProperty="id" parameterType="Tliuyan">
+		insert into tliuyan
+		(neirong,liuyanshi,stuid,huifu,huifushi)
+		values
+		(#{neirong},#{liuyanshi},#{stuId},#{huifu},#{huifushi});
+	</insert>
+ 
+	
+  
+ 
+ 
+ 
+ 
+ 
+
+
+
+	<update id="updateTliuyan" parameterType="Tliuyan" >
+		update tliuyan set
+		neirong=#{neirong},liuyanshi=#{liuyanshi},stuid=#{stuId},huifu=#{huifu},huifushi=#{huifushi}
+		where
+		id=#{id}	
+	</update>
+	
+ 
+	
+	<delete id="deleteTliuyan" parameterType="int">
+	    delete from  tliuyan where id=${value}
+	</delete>
+
+</mapper>
+
+ 

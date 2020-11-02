@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.TzuoyetMapper">
+	<select id="findTzuoyetList" 
+		resultType="Tzuoyet">
+		select * from tzuoyet 
+	</select>
+	
+	<select id="query" parameterType="java.util.Map" resultType="Tzuoyet">
+		select * from tzuoyet  
+		<where>
+			<if test="id!=null and id!=0">
+			   and id= #{id}
+			</if>
+		</where>
+	</select>
+	
+	
+	<select id="queryTzuoyetById" parameterType="int" resultType="Tzuoyet">
+		select * from tzuoyet where id=${value}
+	</select>
+ 
+
+
+	<insert id="insertTzuoyet" useGeneratedKeys="true" keyProperty="id" parameterType="Tzuoyet">
+		insert into tzuoyet
+		(mingcheng,fujian,beizhu,fabushi,teaid)
+		values
+		(#{mingcheng},#{fujian},#{beizhu},#{fabushi},#{teaId});
+	</insert>
+ 
+	
+  
+ 
+ 
+ 
+ 
+ 
+
+
+
+	<update id="updateTzuoyet" parameterType="Tzuoyet" >
+		update tzuoyet set
+		mingcheng=#{mingcheng},fujian=#{fujian},beizhu=#{beizhu},fabushi=#{fabushi},teaid=#{teaId}
+		where
+		id=#{id}	
+	</update>
+	
+ 
+	
+	<delete id="deleteTzuoyet" parameterType="int">
+	    delete from  tzuoyet where id=${value}
+	</delete>
+
+</mapper>
+
+ 
